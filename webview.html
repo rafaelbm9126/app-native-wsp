@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>WebView Test</title>
+    </head>
+    <body>
+        <h1>Test WebView</h1>
+        <webview id="foo" src="https://www.github.com/" style="display:block; width:640px; height:480px">
+            <div class="indicator">Hi</div>
+        </webview>
+        <script>
+            onload = () => {
+                const webview = document.querySelector('webview');
+                const indicator = document.querySelector('.indicator');
+
+                const loadstart = () => {
+                    indicator.innerText = 'loading...'
+                }
+            
+                const loadstop = () => {
+                    indicator.innerText = ''
+                }
+            
+                webview.addEventListener('did-start-loading', loadstart);
+                webview.addEventListener('did-stop-loading', loadstop);
+
+                webview.addEventListener("dom-ready", function(){
+                    webview.openDevTools();
+                    alert('hola')
+                });
+            }
+        </script>
+    </body>
+</html>
