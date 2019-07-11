@@ -5,7 +5,7 @@ context('Network Requests', () => {
 
         cy.viewport(800, 800);
 
-        
+        /*
         cy.document().then((doc) => {
             setInterval(() => {
                 let input = doc.querySelector('#side > div._2HS9r > div > label > input');
@@ -56,8 +56,25 @@ context('Network Requests', () => {
             }, 15000);
             // }, 5000);
         });
+        */
     });
     it('.type() - type into a DOM element', () => {
+
+        cy.wait(15000);
+
+        cy.get('#side > div._2HS9r > div > label > input').type('+5493416162411', { force: true });
+
+        cy.wait(2000);
+
+        cy.get('#side > div._2HS9r > div > label > input').type('{enter}', { force: true });
+
+        cy.wait(2000);
+
+        cy.get("footer div._2i7Ej.copyable-area > div:nth-child(2) div._3u328.copyable-text.selectable-text").type('Message from bot sheldon', { force: true });
+
+        cy.wait(1000);
+
+        cy.get('footer div._2i7Ej.copyable-area > div:nth-child(3) button').click();
 
         cy.document().should('have.property', 'charset').and('eq', 'UTF-8');
     });
